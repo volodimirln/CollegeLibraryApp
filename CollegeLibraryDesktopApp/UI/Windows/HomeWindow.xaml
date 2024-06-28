@@ -1,0 +1,35 @@
+﻿<Window x:Class="CollegeLibraryDesktopApp.UI.Windows.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollegeLibraryDesktopApp.UI.Windows"
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="Библиотека колледжа" Background="#ECEDF1" ResizeMode="NoResize"  Height="787" Width="1300"  WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+        <Border CornerRadius="25" Background="#fff" Margin="25">
+            <StackPanel>
+                <Button Click="Button_Click" Margin="0,150,0,0" Background="#fff" BorderThickness="0">
+                    <Image Width="43" Source="/UI/Images/Icons/home.png"/>
+                </Button>
+                <Button Click="Button_Click_1" Margin="0,35,0,0" Background="#fff" BorderThickness="0">
+                    <Image Width="43" Source="/UI/Images/Icons/book.png"/>
+                </Button>
+                <Button Click="Button_Click_2" Margin="0,35,0,0" Background="#fff" BorderThickness="0">
+                    <Image Width="43" Source="/UI/Images/Icons/man.png"/>
+                </Button>
+                <Button Margin="0,35,0,0" Click="Button_Click_3" Background="#fff" BorderThickness="0">
+                    <Image Width="43" Source="/UI/Images/Icons/settings.png"/>
+                </Button>
+                <Button Margin="0,35,0,0" Click="Button_Click_4" Background="#fff" BorderThickness="0">
+                    <Image Width="43" Source="/UI/Images/Icons/exit.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
+        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

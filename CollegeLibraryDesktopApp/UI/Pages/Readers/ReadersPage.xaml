@@ -1,0 +1,93 @@
+﻿<Page x:Class="CollegeLibraryDesktopApp.UI.Pages.Readers.ReadersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CollegeLibraryDesktopApp.UI.Pages.Readers"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ReadersPage" Background="#ECEDF1">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.01*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="0.01*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Content="Читатели" FontFamily="Lack" FontSize="43" Padding="0" Margin="0,25,0,0"/>
+                    <Label Content="за все время" FontSize="18" Opacity="0.7" HorizontalAlignment="Right" Margin="0" Padding="0"  FontFamily="Roboto" />
+                </StackPanel>
+                <StackPanel Margin="25,35,0,0">
+                    <Button BorderThickness="0" Click="Button_Click_4" Background="#ECEDF1"  Width="37">
+                        <Image Source="/UI/Images/Icons/arhive.png" Width="37"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="15,35,0,0">
+                    <Border CornerRadius="15" Height="35" BorderThickness="0" Width="450" Background="#fff">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="tbxSearch" Margin="15,0,0,0" TextChanged="TextBox_TextChanged" Width="390" Height="35" BorderThickness="0" Padding="3" FontSize="18"/>
+                            <Image Source="/UI/Images/Icons/search.png" Width="30"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="15,35,0,0">
+                    <Button BorderThickness="0" Click="Button_Click_3" Background="#ECEDF1"  Width="37">
+                        <Image Source="/UI/Images/Icons/add.png" Width="37"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="15,35,0,0">
+                    <Button BorderThickness="0" Background="#ECEDF1" Click="Button_Click_2" Width="37" >
+                        <Image Source="/UI/Images/Icons/arrowleft.png" Width="37"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="15,37,0,0">
+                    <Label x:Name="lblCount" FontFamily="Lack" FontSize="18"/>
+                </StackPanel>
+                <StackPanel Margin="15,35,0,0">
+                    <Button BorderThickness="0" Background="#ECEDF1" Click="Button_Click_1"  Width="37" >
+                        <Image Source="/UI/Images/Icons/arrow.png" Width="37"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <ListView Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.ColumnSpan="2" x:Name="lsvReaders" BorderThickness="0" Background="#ECEDF1" SelectionChanged="lsvBooks_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="1050" Height="70" Background="#fff" CornerRadius="15" Margin="0,0,35,15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="3*"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="/UI/Images/Icons/man.png" Grid.Column="0" Grid.RowSpan="2" Width="37"/>
+                                <Label Content="{Binding FullName}" FontFamily="Roboto" FontWeight="Medium" Margin="0,7,0,0" FontSize="16" Grid.Column="1" Grid.Row="0"/>
+                                <Label Content="{Binding RecordNumber}" FontSize="16" Foreground="#757575" Grid.Column="1" Grid.Row="1"/>
+                                <Label Content="{Binding DateRegistrseionStr}" FontFamily="Roboto" FontWeight="Medium" FontSize="16" Margin="10,10,0,0" Grid.Column="2" Grid.Row="0" />
+                                <Label Content="дата регистрации" Grid.Column="2" FontSize="14" Foreground="#757575" Grid.Row="1" />
+                                <Label Content="{Binding IssuedEndBooksCount}" FontFamily="Roboto" FontWeight="Medium" FontSize="16" Margin="70,10,0,0" Grid.Column="3" Grid.Row="0" />
+                                <Label Content="возращенные книги" Grid.Column="3" FontSize="14" Foreground="#757575" Grid.Row="1" />
+                                <Label Content="{Binding IssuedBooksCount}" FontFamily="Roboto" FontWeight="Medium" FontSize="16" Margin="70,10,0,0" Grid.Column="4" Grid.Row="0" />
+                                <Label Content="книги в пользовании" Grid.Column="4" FontSize="14" Foreground="#757575" Grid.Row="1" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+        <Frame x:Name="AddEdit" NavigationUIVisibility="Hidden" />
+    </Grid>
+</Page>

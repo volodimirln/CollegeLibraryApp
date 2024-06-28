@@ -1,0 +1,173 @@
+﻿<Page x:Class="CollegeLibraryDesktopApp.UI.Pages.Books.AddEditPages.AddEditBookPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CollegeLibraryDesktopApp.UI.Pages.Books.AddEditPages"
+      mc:Ignorable="d" 
+      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditBookPage" Background="#ECEDF1" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                <Button x:Name="btnClose" Width="50" HorizontalAlignment="Right" BorderThickness="0" Margin="15" Background="#ECEDF1" Click="btnClose_Click">
+                    <Image Source="/UI/Images/close.png" Width="45"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <TextBox Text="{Binding Title}" TextChanged="textChange_TextChanged"  x:Name="tbxTitle" HorizontalAlignment="Left" FontFamily="Lack" FontSize="33" Padding="0" BorderThickness="0" Background="#ECEDF1"/>
+                <Border  Background="#fff" CornerRadius="15" Margin="0,15,0,15" Padding="15,25,25,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="11*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Image Source="{Binding bipmap}" HorizontalAlignment="Center"  />
+                            <Button Content="Изменить обложку" Foreground="#fff" BorderThickness="0" Height="27" Margin="0,0,0,15" Background="#97B9FF" x:Name="btnChangeCoverPhoto" Click="btnChangeCoverPhoto_Click">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="7"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Label Content="{Binding DataAddStr}" FontSize="14" FontFamily="Roboto"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Grid Width="430">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Content="Жанр" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="0" Grid.Column="0"/>
+                                <ComboBox SelectionChanged="cmbGeners_SelectionChanged"  x:Name="cmbGeners" SelectedValue="{Binding GenreId}"  DisplayMemberPath="Title" Style="{StaticResource ComboBoxSelectedItem}" FontFamily="Roboto" Grid.Row="0" Grid.Column="1"  Height="30" FontSize="22" Background="#fff" SelectedValuePath="Id" />
+                                <Label Content="Издатель" Margin="0,0,0,17"  FontFamily="Lack" FontSize="22" Grid.Row="1" Grid.Column="0"/>
+                                <ComboBox SelectionChanged="cmbGeners_SelectionChanged" x:Name="cmbPublishing" SelectedValue="{Binding PublishingId}"  DisplayMemberPath="Name" Style="{StaticResource ComboBoxSelectedItem}" FontFamily="Roboto" Grid.Row="1" Grid.Column="1" Height="30" FontSize="22" Background="#fff" SelectedValuePath="Id" />
+                                <Label Content="ISBN" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox Text="{Binding ISBNCode}" TextChanged="textChange_TextChanged" Margin="0,0,0,17" BorderThickness="0" Padding="5" FontSize="22" FontFamily="Roboto" Grid.Row="2" Grid.Column="1" />
+                                <Label Content="Статус" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="3" Grid.Column="0"/>
+                                <ComboBox SelectionChanged="cmbGeners_SelectionChanged" Style="{StaticResource ComboBoxSelectedItem}"  Margin="0,0,0,55"  FontFamily="Roboto" SelectedValue="{Binding Status}"  Height="30" FontSize="22" Grid.Row="3" Grid.Column="1" Background="#fff" SelectedValuePath="Tag" >
+                                    <ComboBoxItem Tag="True" Content="В наличии"/>
+                                    <ComboBoxItem Tag="False" Content="В архиве"/>
+                                </ComboBox>
+                                <Label Content="Выдано" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="4" Grid.Column="0"/>
+                                <TextBox IsReadOnly="True" Text="{Binding IssuedBooks, StringFormat={}{0} штук. }" Margin="0,0,0,17" BorderThickness="0" Padding="5" FontSize="22" FontFamily="Roboto" Grid.Row="4" Grid.Column="1" />
+                                <Label Content="Остаток" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="5" Grid.Column="0"/>
+                                <TextBox IsReadOnly="True" Text="{Binding Remainder, StringFormat={}{0} штук. }" Margin="0,0,0,17" BorderThickness="0" Padding="5" FontSize="22" FontFamily="Roboto" Grid.Row="5" Grid.Column="1" />
+                                <Label Content="Всего книг" Margin="0,0,0,17" FontFamily="Lack" FontSize="22" Grid.Row="6" Grid.Column="0"/>
+                                <TextBox IsReadOnly="True" Text="{Binding AllCopies, StringFormat={}{0} штук. }" Margin="0,0,0,17" BorderThickness="0" Padding="5" FontSize="22" FontFamily="Roboto" Grid.Row="6" Grid.Column="1" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Button x:Name="btnSave" Click="btnSave_Click" Foreground="#fff" BorderThickness="0" Height="27" Margin="0,0,0,15" Background="#97B9FF" FontSize="14" Content="Сохранить изменения" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                        </Button.Resources>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                 <Border CornerRadius="15" Background="#fff" BorderThickness="0" Margin="25,60,25,0" Padding="15,15,15,0" Height="485">
+                    <StackPanel >
+                        <Label Content="Читатели" FontFamily="Lack" FontSize="22" />
+                        <Label Content="Выданные книги" FontFamily="Roboto" FontSize="16" />
+                        <ListView x:Name="lsvRider" SelectionChanged="ListView_SelectionChanged" SelectedValuePath="Id" BorderThickness="0" Margin="0" Height="350" ItemsSource="{Binding IssuedBooksList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="15" Background="#ECEDF1" Width="255" Padding="7" Margin="0,0,0,15">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="7*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="5*"/>
+                                                <RowDefinition Height="5*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label FontFamily="Lack" FontSize="14" Grid.Row="0" Grid.Column="0" FontWeight="Medium" Content="{Binding UserName}"/>
+                                            <Label FontFamily="Lack" FontSize="14"  Grid.Row="0" HorizontalAlignment="Right"  Grid.Column="1" FontWeight="Medium" Content="{Binding RecordNumber}"/>
+                                            <Label FontFamily="Roboto"  FontSize="14" Grid.Row="1" Grid.ColumnSpan="2"   FontWeight="Regular" Content="{Binding Period}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Border BorderThickness="0" CornerRadius="20"  Margin="0" Width="270"  Height="45"  Background="#ECEDF1" >
+                            <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#E1FF01" Margin="5" Height="33" Width="33" />
+                                    <Image Source="/UI/Images/Icons/arrow.png" Width="20"/>
+                                </Grid>
+                                <Button Click="Button_Click" Background="#ECEDF1" BorderThickness="0" HorizontalContentAlignment="Center" Padding="30,0,0,0" Width="150" Content="Выдать книгу" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Light" FontSize="16"/>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border Grid.ColumnSpan="2" Grid.Row="2" Margin="0,25,0,0" Padding="15,0,0,0" CornerRadius="15,0,0,0" Background="#fff">
+                <StackPanel Orientation="Horizontal" >
+                    <Border BorderThickness="0" CornerRadius="20"  Margin="0,0,15,0" Width="200"  Height="45"  Background="#ECEDF1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#E1FF01" Margin="5" Height="33" Width="33" />
+                                <Image Source="/UI/Images/Icons/arrow.png" Width="20"/>
+                            </Grid>
+                            <Button Background="#ECEDF1" Click="Button_Click_1" BorderThickness="0" HorizontalContentAlignment="Center" Padding="0" Width="130" Content="Экземпляр" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="0" CornerRadius="20"  Margin="0,0,15,0" Width="200"  Height="45"  Background="#ECEDF1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#E1FF01" Margin="5" Height="33" Width="33" />
+                                <Image Source="/UI/Images/Icons/arrow.png" Width="20"/>
+                            </Grid>
+                            <Button Background="#ECEDF1" BorderThickness="0" Click="Button_Click_2" HorizontalContentAlignment="Center" Padding="0" Width="130" Content="Жанр" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="0" CornerRadius="20"  Margin="0,0,15,0" Width="200"  Height="45"  Background="#ECEDF1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#E1FF01" Margin="5" Height="33" Width="33" />
+                                <Image Source="/UI/Images/Icons/arrow.png" Width="20"/>
+                            </Grid>
+                            <Button Background="#ECEDF1" BorderThickness="0" HorizontalContentAlignment="Center" Click="Button_Click_4" Padding="0" Width="130" Content="Автор" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="0" CornerRadius="20"  Margin="0,0,15,0" Width="200"  Height="45"  Background="#ECEDF1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#E1FF01" Margin="5" Height="33" Width="33" />
+                                <Image Source="/UI/Images/Icons/arrow.png" Width="20"/>
+                            </Grid>
+                            <Button Background="#ECEDF1" BorderThickness="0" HorizontalContentAlignment="Center" Padding="0" Width="130" Click="Button_Click_3" Content="Издательство" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Light" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>
