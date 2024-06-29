@@ -84,7 +84,7 @@
 - [@volodimirln Tg](https://t.me/volodimirln)
 
 
-## License
+## Лицензия
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
